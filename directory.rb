@@ -23,8 +23,11 @@ puts "-------------"
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  #students.each do |student|
+    #puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    # to print the index number
+    students.each.with_index(1) do |student, index|
+    puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
