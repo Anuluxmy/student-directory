@@ -27,8 +27,11 @@ def print(students)
     #puts "#{student[:name]} (#{student[:cohort]} cohort)"
     # to print the index number
     students.each.with_index(1) do |student, index|
-    puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
-  end
+      #to print name starting with A
+      if student[:name].capitalize.start_with?"S"
+        puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+      end
+    end
 end
 
 def print_footer(students)
