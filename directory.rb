@@ -28,7 +28,9 @@ def print(students)
     # to print the index number
     students.each.with_index(1) do |student, index|
       #to print name starting with A
-      if student[:name].capitalize.start_with?"S"
+      #if student[:name].capitalize.start_with?"S"
+      #to print name length less than 12 letters
+      if student[:name].length < 12
         puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
       end
     end
