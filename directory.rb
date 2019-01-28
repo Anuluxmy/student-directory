@@ -23,18 +23,23 @@ puts "-------------"
 end
 
 def print(students)
+  count = 0
+  while count < students.length do
+    if students[count][:name].length < 12
+    puts "#{count+1} #{students[count][:name]} (#{students[count][:cohort]}) cohort"
+    end
+    count += 1
+  end
+end
   #students.each do |student|
     #puts "#{student[:name]} (#{student[:cohort]} cohort)"
     # to print the index number
-    students.each.with_index(1) do |student, index|
+    #students.each.with_index(1) do |student, index|
       #to print name starting with A
       #if student[:name].capitalize.start_with?"S"
       #to print name length less than 12 letters
-      if student[:name].length < 12
-        puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
-      end
-    end
-end
+        #puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
