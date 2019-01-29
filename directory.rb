@@ -11,7 +11,7 @@ def input_students
     puts "Enter the student country"
     country = gets.chomp.capitalize
     puts "Enter the student height"
-    height = gets.chomp.to_i
+    height = gets.chomp.to_s
     while true do
     students << {name: name, cohort: cohort, country: country, height: height}
     puts "Now we have #{students.count} students"
@@ -32,15 +32,15 @@ def input_students
 end
 
 def print_header
-puts "The students of villains Academy"
-puts "-------------"
+puts "The students of villains Academy".center(50)
+puts "-------------".center(50)
 end
 
 def print(students)
   count = 0
   until count == students.length do
     if students[count][:name].length < 12
-    puts "#{count+1} #{students[count][:name]} (#{students[count][:cohort]}) cohort, from #{students[count][:country]}, height #{students[count][:height]} centimetres"
+    puts "#{count+1} #{students[count][:name]} (#{students[count][:cohort]}) cohort, from #{students[count][:country]}, height #{students[count][:height]} centimetres".center(50)
     end
     count += 1
   end
