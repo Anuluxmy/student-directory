@@ -111,6 +111,16 @@ else
   puts "Overall, we have #{@students.count} great students"
 end
 end
+
+def save_students
+  file = File.open("students.csv", "w")
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort], student[:country], student[:height]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
+end
 =begin
 def interactive_menu
   students = []
@@ -145,3 +155,4 @@ end
 #cohort_group(students)
 #print_footer(students)
 interactive_menu
+save_students
