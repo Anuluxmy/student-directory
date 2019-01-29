@@ -7,11 +7,11 @@ def input_students
     name = gets.chomp.capitalize
 
     puts "Enter the student cohort"
-    cohort = gets.chomp
+    cohort = gets.tr("\n","")
     puts "Enter the student country"
     country = gets.chomp.capitalize
     puts "Enter the student height"
-    height = gets.chomp.to_s
+    height = gets.tr("\n","")
     while true do
     students << {name: name, cohort: cohort, country: country, height: height}
     if students.count == 1
@@ -25,11 +25,11 @@ def input_students
       break
     end
     puts "Enter the student cohort"
-    cohort = gets.chomp
+    cohort = gets.tr("\n","")
     puts "Enter the student country"
     country = gets.chomp.capitalize
     puts "Enter the student height in centimetres"
-    height = gets.chomp.to_s
+    height = gets.tr("\n","")
   end
   #return the array of students
   students
