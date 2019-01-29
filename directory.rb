@@ -53,7 +53,21 @@ end
       #if student[:name].capitalize.start_with?"S"
       #to print name length less than 12 letters
         #puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+def cohort_group(students)
+  cohorts_by_group = {}
+  students.each do |student|
+    cohort = student[:cohort]
+    if cohorts_by_group[cohort] == nil
+      cohorts_by_group[cohort] = []
+    end
+      cohorts_by_group[cohort].push(student[:name])
+    end
+    cohorts_by_group.each do |key, value|
+      puts "#{key} - #{value.join(", ")}"
+    end
 
+
+end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
@@ -63,4 +77,5 @@ students = input_students
 #nothing happens until we call the methods
 print_header
 print(students)
+cohort_group(students)
 print_footer(students)
