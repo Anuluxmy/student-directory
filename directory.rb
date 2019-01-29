@@ -14,7 +14,11 @@ def input_students
     height = gets.chomp.to_s
     while true do
     students << {name: name, cohort: cohort, country: country, height: height}
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else
     puts "Now we have #{students.count} students"
+    end
     puts "Enter the student name"
     name = gets.chomp.capitalize
     if name.empty?
@@ -70,9 +74,13 @@ def cohort_group(students)
 end
 
 def print_footer(students)
+  #puts "Overall, we have #{students.count} great students"
+if students.count == 1
+  puts "Overall, we have #{students.count} great student"
+else
   puts "Overall, we have #{students.count} great students"
 end
-
+end
 students = input_students
 #nothing happens until we call the methods
 print_header
