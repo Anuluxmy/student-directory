@@ -1,4 +1,6 @@
-@students = [] # an empty array accessible to all methods
+@students = []
+require 'csv'
+# an empty array accessible to all methods
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
@@ -123,13 +125,17 @@ end
 end
 
 def save_students
-  puts "In which file do you want to save"
-  choosing_file
-  File.open(filename, "w") do |file|
+  puts "In which file do you want to save select default"
+  filename = STDIN.gets.chomp
+  if filename == "default"
+    filename = "students.csv"
+  else
+    puts "Enter valid file"
+    filename = STDIN.gets.chomp
+   end
+  CSV.open(filename, "w") do |csv|
   @students.each do |student|
-    student_data = [student[:name], student[:cohort], student[:country], student[:height]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv << [student[:name], student[:cohort], student[:country], student[:height]]
   end
 end
   puts "You have saved #{@students.count} students to file"
