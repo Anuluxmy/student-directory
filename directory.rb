@@ -17,12 +17,16 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "Selection to input students details"
     input_students
   when "2"
+    puts "Selection to show the student details"
     show_students
   when "3"
+    puts "Selection to save student details to file"
     save_students
   when "4"
+    puts "Selection to load the student list from file"
     load_students
   when "9"
     exit
@@ -63,6 +67,7 @@ def input_students
     puts "Enter the student height in centimetres"
     height = STDIN.gets.tr("\n","")
   end
+  puts "You have given #{@students.count} student details"
   #return the array of students
 end
 
@@ -125,6 +130,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "You have saved #{@students.count} students to file"
 end
 
 def load_students(filename = "students.csv")
@@ -143,7 +149,7 @@ def try_load_students
   end
   if File.exists?(filename)
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
+    puts "Loaded #{@students.count} students from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
     exit
