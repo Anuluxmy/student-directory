@@ -45,7 +45,7 @@ def input_students
     puts "Enter the student height"
     height = gets.tr("\n","")
     while true do
-    @students << {name: name, cohort: cohort, country: country, height: height}
+    @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else
@@ -98,10 +98,10 @@ def cohort_group(students)
   cohorts_by_group = {}
   @students.each do |student|
     cohort = student[:cohort]
-    if cohorts_by_group[cohort] == nil
-      cohorts_by_group[cohort] = []
+    if cohorts_by_group[cohort.to_sym] == nil
+      cohorts_by_group[cohort.to_sym] = []
     end
-      cohorts_by_group[cohort].push(student[:name])
+      cohorts_by_group[cohort.to_sym].push(student[:name])
     end
     cohorts_by_group.each do |key, value|
       puts "#{key} - #{value.join(", ")}"
@@ -130,8 +130,8 @@ end
 def load_students
   file = File.open("students.csv", "r")
   file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-  @students << {name: name, cohort: cohort.to_sym}
+  name, cohort,country, height = line.chomp.split(',')
+  @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
 end
 file.close
 end
