@@ -125,25 +125,25 @@ end
 def save_students
   puts "In which file do you want to save"
   choosing_file
-  file = File.open("students.csv", "w")
+  File.open(filename, "w") do |file|
   @students.each do |student|
     student_data = [student[:name], student[:cohort], student[:country], student[:height]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+end
   puts "You have saved #{@students.count} students to file"
 end
 
 def load_students(filename = "students.csv")
   puts "In Which file do you want to load"
   choosing_file
-  file = File.open(filename, "r")
+  File.open(filename, "r") do |file|
   file.readlines.each do |line|
-  name, cohort,country, height = line.chomp.split(',')
+  name, cohort, country, height = line.chomp.split(',')
   at_students(name,cohort,country,height)
-end
-file.close
+   end
+ end
 end
 
 def choosing_file
@@ -152,11 +152,10 @@ def choosing_file
   if filename == "default"
     filename = "students.csv"
   else
-    puts "Enter the filename"
+    puts "Enter the file name"
     filename = STDIN.gets.chomp
   end
 end
-
 
 def try_load_students
   filename = ARGV.first
