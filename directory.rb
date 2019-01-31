@@ -45,7 +45,7 @@ def input_students
     puts "Enter the student height"
     height = STDIN.gets.tr("\n","")
     while true do
-    @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
+    at_students(name,cohort,country,height)
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else
@@ -131,7 +131,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort,country, height = line.chomp.split(',')
-  @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
+  at_students(name,cohort,country,height)
 end
 file.close
 end
@@ -150,6 +150,9 @@ def try_load_students
   end
 end
 
+def at_students(name,cohort,country,height)
+@students << {name: name, cohort: cohort.to_sym, country: country, height: height}
+end
 =begin
 def interactive_menu
   students = []
