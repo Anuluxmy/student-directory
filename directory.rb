@@ -10,7 +10,7 @@ end
 def interactive_menu
 loop do
   print_menu
-  process(gets.chomp)
+  process(STDIN.gets.chomp)
  end
 end
 
@@ -36,14 +36,14 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
     puts "Enter student name"
-    name = gets.chomp.capitalize
+    name = STDIN.gets.chomp.capitalize
 
     puts "Enter the student cohort"
-    cohort = gets.tr("\n","")
+    cohort = STDIN.gets.tr("\n","")
     puts "Enter the student country"
-    country = gets.chomp.capitalize
+    country = STDIN.gets.chomp.capitalize
     puts "Enter the student height"
-    height = gets.tr("\n","")
+    height = STDIN.gets.tr("\n","")
     while true do
     @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
     if @students.count == 1
@@ -52,16 +52,16 @@ def input_students
     puts "Now we have #{@students.count} students"
     end
     puts "Enter the student name"
-    name = gets.chomp.capitalize
+    name = STDIN.gets.chomp.capitalize
     if name.empty?
       break
     end
     puts "Enter the student cohort"
-    cohort = gets.tr("\n","")
+    cohort = STDIN.gets.tr("\n","")
     puts "Enter the student country"
-    country = gets.chomp.capitalize
+    country = STDIN.gets.chomp.capitalize
     puts "Enter the student height in centimetres"
-    height = gets.tr("\n","")
+    height = STDIN.gets.tr("\n","")
   end
   #return the array of students
 end
@@ -127,13 +127,25 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort,country, height = line.chomp.split(',')
   @students << {name: name, cohort: cohort.to_sym, country: country, height: height}
 end
 file.close
+end
+
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
 end
 
 =begin
@@ -169,4 +181,5 @@ end
 #print(students)
 #cohort_group(students)
 #print_footer(students)
+try_load_students
 interactive_menu
