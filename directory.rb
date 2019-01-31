@@ -123,6 +123,8 @@ end
 end
 
 def save_students
+  puts "In which file do you want to save"
+  choosing_file
   file = File.open("students.csv", "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort], student[:country], student[:height]]
@@ -134,6 +136,8 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
+  puts "In Which file do you want to load"
+  choosing_file
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort,country, height = line.chomp.split(',')
@@ -141,6 +145,18 @@ def load_students(filename = "students.csv")
 end
 file.close
 end
+
+def choosing_file
+  puts "Give me file name or input default for default file"
+  filename = STDIN.gets.chomp
+  if filename == "default"
+    filename = "students.csv"
+  else
+    puts "Enter the filename"
+    filename = STDIN.gets.chomp
+  end
+end
+
 
 def try_load_students
   filename = ARGV.first
@@ -180,6 +196,7 @@ def interactive_menu
   when "9"  # this will cause the program to terminate
     exit
   else
+
     puts "I don't know what you meant, try again"
   end
   end
